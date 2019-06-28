@@ -73,6 +73,58 @@ class PismoDocumentTest < Test::Unit::TestCase
     end
   end
 
+  context "A basic real world blog post with custom user agent" do
+    setup do
+      @url = 'https://web.archive.org/web/20190310230755/http://www.rubyinside.com/no-true-mod_ruby-is-damaging-rubys-viability-on-the-web-693.html'
+      @doc = Document.new(@url, user_agent: 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:43.0) Gecko/20100101 Firefox/43.0')
+    end
+
+    should "provide a title" do
+      assert_equal  "No True \"mod_ruby\" Is Damaging Ruby's Viability On The Web", @doc.title
+    end
+
+    context "with a custom user agent alias" do
+      setup do
+        @doc = Document.new(@url, user_agent_alias: 'Linux Mozilla')
+      end
+
+      should "provide a title" do
+        assert_equal  "No True \"mod_ruby\" Is Damaging Ruby's Viability On The Web", @doc.title
+      end
+    end
+
+    context "with a custom user agent alias as the user_agent" do
+      setup do
+        @doc = Document.new(@url, user_agent: 'Linux Mozilla')
+      end
+
+      should "provide a title" do
+        assert_equal  "No True \"mod_ruby\" Is Damaging Ruby's Viability On The Web", @doc.title
+      end
+    end
+
+    context "with a custom user agent alias as the user_agent" do
+      setup do
+        @doc = Document.new(@url, user_agent: 'Linux Mozilla')
+      end
+
+      should "provide a title" do
+        assert_equal  "No True \"mod_ruby\" Is Damaging Ruby's Viability On The Web", @doc.title
+      end
+    end
+
+    context "with an unknown custom user agent alias" do
+      setup do
+        @doc = Document.new(@url, user_agent: 'Browser Bob')
+      end
+
+      should "provide a title" do
+        assert_equal  "No True \"mod_ruby\" Is Damaging Ruby's Viability On The Web", @doc.title
+      end
+    end
+  end
+
+
   context "A basic real world blog post with relative images and all_images option set to true" do
     setup do
       @doc = Document.new(open(HTML_DIRECTORY + "/relative_imgs.html"), :all_images => true)
