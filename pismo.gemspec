@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
   s.description = %q{Pismo extracts and retrieves content-related metadata from HTML pages - you can use the resulting data in an organized way, such as a summary/first paragraph, body text, keywords, RSS feed URL, favicon, etc.}
   s.summary     = %q{Extracts or retrieves content-related metadata from HTML pages}
   s.date        = %q{2010-12-19}
-  s.default_executable = %q{pismo}
 
   s.rubyforge_project = "pismo"
 
@@ -32,5 +31,4 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<phrasie>, [">= 0.1.4"])
   s.add_dependency(%q<fastimage>, [">= 1"])
   s.add_dependency(%q<htmlentities>)
-
 end
